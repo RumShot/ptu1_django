@@ -17,6 +17,10 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    def get_books_count(self):
+        return self.books.count()
+    get_books_count.short_description = 'knygos'
+
     class Meta:
         ordering = ['last_name', 'first_name']
         verbose_name = 'autorius'
@@ -32,13 +36,16 @@ class Book(models.Model):
 
     def __str__(self):
         return f'{str(self.author)} - {self.title}'
-        # {self.summary} {self.isbn} {self.genre}
+
+    def display_genres(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+    display_genres.short_description = 'Zanrai'
 
 
 class Bookinstance(models.Model):
-    id = models.UUIDField('id', primary_key=True, default=uuid.uuid4, help_text='unikalus ID knygos kopijai')
+    id = models.UUIDField('id', primary_key=True, default=uuid.uuid4, help_text='unikalus ID knygos kopijai', editable=False)
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True, related_name='book_instances', verbose_name='knyga')
-    due_back = models.DateField('grazinama', null=True, blank=True)
+    due_back = models.DateField('grazinama', null=True, blank=True, db_index=True)
 
     LOAN_STATUS = (
         ('a', 'administruojama'),
@@ -47,7 +54,7 @@ class Bookinstance(models.Model):
         ('r', 'rezervuota'),      
     )
 
-    status = models.CharField(verbose_name='statusas', max_length=1, choices=LOAN_STATUS, blank=True, default='a')
+    status = models.CharField(verbose_name='statusas', max_length=1, choices=LOAN_STATUS, blank=True, default='a', db_index=True)
 
     def __str__(self):
         return f'{str(self.id)} - {self.book.title}'
