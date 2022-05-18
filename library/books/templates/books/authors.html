@@ -1,0 +1,14 @@
+{% extends 'books/base.html' %}
+{% block content %}
+    <div class= "container py-3">
+        <h1>Autoriai</h1>
+        <div class="list-group">
+        {% for author in authors %}
+                <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'author' author.id %}">
+                {{ author }}
+                <span class="badge badge-dark badge-pill">knygu: {{ author.get_books_count }}</span>
+                </a>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

@@ -13,6 +13,7 @@ class Genre(models.Model):
 class Author(models.Model):
     first_name = models.CharField('vardas', max_length=100)
     last_name = models.CharField('pavarde', max_length=100)
+    description = models.TextField('apie autoriu', max_length=2000, blank=True, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -40,6 +41,10 @@ class Book(models.Model):
     def display_genres(self):
         return ', '.join(genre.name for genre in self.genre.all()[:3])
     display_genres.short_description = 'Zanrai'
+
+    def get_available_instances(self):
+        return self.book_instances.filter(status__exact='g').count()
+    get_available_instances.short_description = 'prieinamu kopiju kiekis'
 
 
 class Bookinstance(models.Model):

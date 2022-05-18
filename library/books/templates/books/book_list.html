@@ -1,0 +1,32 @@
+{% extends 'books/base.html' %}
+{% block content %}
+    <div class= "container py-3">
+        <h1>Knygos</h1>
+        <form action="{% url 'books' %}" method="get" class="d-flex mb-2">
+            <input type="text" name="search_title" placeholder="ieskoti knygos" class="flex-grow-1" value="{{ request.GET.search_title }}">
+            <button type="submit" class="btn btn-primary ml-1">&#128269; Ieskoti</button>
+        </form>
+        <div class="list-group">
+        {% for book in books %}
+                <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'author' book.author.id %}">
+                {{ book }}
+                    <span class="flex-grow-1"> {{ book }} </span>
+                    <span class="badge badge-success badge-pill ml-1">kopiju: {{ book.get_available_instances }}</span>
+                    <span class="badge badge-dark badge-pill ml-1">prieinamu: {{ book.book_instances.count }}</span>
+                </a>
+                <div class="list-group-item small pt-1 bg-light">
+                    {% if book.genre.count > 0 %}
+                        <span class="flex-shrink-1">Zanrai:</span>
+                        {% for genre in book.genre.all %}
+                            <span class="badge badge-pill ml-1" style="background-color: {{ spalva }}">{{ genre }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span class="flex-shrink-1">Zanru nerasta</span>
+                    {% endif %}
+                </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block title %} Knygos | {{ block.super }} {% endblock title%}

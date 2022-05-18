@@ -1,0 +1,20 @@
+{% extends 'books/base.html' %}
+{% block content %}
+    <div class= "container py-3">
+        <h1>{{ author }}</h1>
+            {% if author.description %}
+                <p>{{ author.description }}</p>
+            {% endif %}
+        <h2>Knygos</h2>
+        <div class="list-group">
+            {% for book in author.books.all %}
+                <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'book' book.id %}">
+                    <span class="flex-grow-1"> {{ book.title }} </span>
+                    <span class="badge badge-success badge-pill ml-1">kopiju: {{ book.get_available_instances }}</span>
+                    <span class="badge badge-dark badge-pill ml-1">prieinamu: {{ book.book_instances.count }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+{% block title %} {{ author }} | {{ block.super }} {% endblock title%}
