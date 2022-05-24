@@ -22,15 +22,15 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ('book', 'status', 'due_back', 'id')
-    list_filter = ('status', 'due_back')
+    list_display = ('book', 'status', 'due_back', 'is_overdue', 'reader', 'id')
+    list_filter = ('status', 'due_back', 'reader')
     search_fields = ('id', 'book__title')
     readonly_fields = ('id', )
     list_editable = ('status', 'due_back')
 
     fieldsets = (
         ('pagrindine informacija', {'fields': ('id', 'book')}),
-        ('prieinamumas', {'fields': ('status', 'due_back')})
+        ('prieinamumas', {'fields': (('status', 'due_back'),'reader')})
     )
 
 

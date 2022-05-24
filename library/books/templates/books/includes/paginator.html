@@ -1,0 +1,23 @@
+{% if page_ogj %}
+<div class= "paginator">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page1&search={{ request.GET.search }}">&laquo; pirmas</a>
+            {% if page_obj.previous_page_number > 1 %}
+                <a href="?page={{ page_obj.previous_page_number}}">atgal</a>
+            {% endif %}
+        {% endif %}
+    </span>
+
+    <span class="current mx-3">
+        {{ page_obj.number }} is {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+        {% if page_obj.next_page_number < page_obj.paginator.num_pages %}
+            <a href="?page={{ page_obj.next_page_number}}&search={{ request.GET.search }}">pirmyn</a>
+        {% endif %}
+    <a href="?page={{ page_obj.paginator.num_pages}}&search={{ request.GET.search }}">paskutinis &raquo;</a>
+    {% endif %}
+</div>
+{% endif %}

@@ -2,10 +2,9 @@
 {% block content %}
     <div class= "container py-3">
         <h1>Knygos</h1>
-        <form action="{% url 'books' %}" method="get" class="d-flex mb-2">
-            <input type="text" name="search_title" placeholder="ieskoti knygos" class="flex-grow-1" value="{{ request.GET.search_title }}">
-            <button type="submit" class="btn btn-primary ml-1">&#128269; Ieskoti</button>
-        </form>
+
+        {% include 'books/includes/paginator.html' %}
+
         <div class="list-group">
         {% for book in books %}
                 <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'author' book.author.id %}">
@@ -26,6 +25,9 @@
                 </div>
         {% endfor %}
         </div>
+
+        {% include 'books/includes/paginator.html' %}
+
     </div>
 {% endblock content %}
 

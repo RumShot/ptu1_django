@@ -1,0 +1,30 @@
+{% extends 'books/base.html' %}
+{% block content %}
+<div class='container'>
+    <h1>Prisijungimas</h1>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger">Prisijungimo klaida: {{ form.errors.0}} <br>Bandykite dar karta.</div>
+        {% endif %}
+
+        {% if next %}
+            <div class="alert alert-warning">Neturite teises pasiekti puslapi, kurio adresa irasete. Prasome prisijungti</div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="id_username">Vartotojo Vardas</label><br>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="id_username">Slaptazodis</label><br>
+            {{ form.password }}
+        </div>
+        <div class="form-group justify-content-center">    
+            <input type="submit" value="prisijungti" class="btn btn-primary">
+            <input type="hidden" name="next" value="{{ next }}">
+        </div>
+    </form>
+    <p><a href="{% url 'password_reset' %}">Pamirsote slaptazodi</a></p>
+</div>
+{% endblock content %}

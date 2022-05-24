@@ -1,0 +1,24 @@
+{% extends 'books/base.html' %}
+{% block content %}
+    <div class= "container py-3">
+        <h1>Mano paimtos knygos</h1>
+
+        {% if bookinstance_list %}
+        {% include 'books/includes/paginator.html' %}
+        <div class="list-group">
+            {% for copy in bookinstance_list%}
+            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'book' copy.book.id %}">
+                <span class="flex-grow-1"> {{ copy.book }} </span>
+                <span class="badge {% if copy.is_overdue %}badge-danger{% else %} badge-dark {% endif %} badge-pill ml-1">grazinti reikia: {{ copy.due_back }}</span>
+                <span class="badge badge-light badge-pill ml-1">{{ copy.get_status_display }}</span>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="list-group">
+            Siuo mentu nepasiemete knygu
+        </div>
+        {% endif %}
+    </div>
+{% endblock content %}      
+{% block title %} Mano knygos | {{ block.super }} {% endblock title%}
