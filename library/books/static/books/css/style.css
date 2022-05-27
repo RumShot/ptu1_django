@@ -2,3 +2,4 @@ h1 {border-bottom: 3px solid purple;}
 body {background-color: #A9DDC9 !important;}
 main{background-color: rgba(255, 255 ,255, 0.8) !important;}
 .badge-dark{float: right !important;}
+main .container{background-color: rgba(255, 255 ,255, 0.8) !important; padding: 1rem 1rem;}

@@ -1,0 +1,33 @@
+{% extends 'books/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="content-section">
+        <div class="media">
+            {% if user.user_profile.picture %}
+            <img class="img-fluid account-img rounded-circle mr-2" style="max-width: 300px" src="{{ user.user_profile.picture.url }}">
+            {% else %}
+            <img class="img-fluid account-img rounded-circle mr-2" style="max-width: 300px" src="{% static 'user_profile/img/default.png' %}">
+            {% endif %}
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <h3 class="account-heading">{{ user.first_name}} {{ user.last_name}}</h3>
+                {% if user == request.user %}
+                    <p class="text-seconary">{{ user.email }}</p>
+                    <a href="{% url 'edit_profile' %}">Atnaujunti</a>
+                {% endif %}
+                {% if user.book_reviews %}
+                    Komentaru knygoms: {{ user.book_reviews.count }}
+                    <div class="list-group">
+                        {% for review in user.book_reviews.all %}
+                        <span class="float-right">{{ review.book}}</span>
+                        <a href="{% url 'book' review.book.id %}" class="list-item-item">{{ review.book }}</a>
+                        {{ review.content|safe }}      
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

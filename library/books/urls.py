@@ -9,5 +9,4 @@ urlpatterns = [
     path('books/', views.BookListView.as_view(), name='books'),
     path('books/<int:pk>/', views.BookDetailView.as_view(), name='book'),
     path('my_books/', views.LoanedBooksByUser.as_view(), name='my_books'),
-    # path('search/', views.search, name='search'),
 ]
