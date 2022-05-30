@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-27 12:18+0300\n"
+"POT-Creation-Date: 2022-05-27 13:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,125 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\books\models.py:11 .\books\models.py:36
+msgid "pavadinimas"
+msgstr "naming"
+
+#: .\books\models.py:11
+msgid "iveskite knygos zanra (pvz. detektyvas)"
+msgstr "insert book genre (exmp. detective)"
+
+#: .\books\models.py:18
+msgid "vardas"
+msgstr "name"
+
+#: .\books\models.py:19
+msgid "pavarde"
+msgstr "surname"
+
+#: .\books\models.py:20
+msgid "apie autoriu"
+msgstr "Authors"
+
+#: .\books\models.py:27
+msgid "knygos"
+msgstr "books"
+
+#: .\books\models.py:31 .\books\models.py:37
+msgid "autorius"
+msgstr "authors"
+
+#: .\books\models.py:32
+msgid "autoriai"
+msgstr "authors"
+
+#: .\books\models.py:38
+msgid "santrauka"
+msgstr "summary"
+
+#: .\books\models.py:38
+msgid "trumpas knygos parasymas"
+msgstr "short description"
+
+#: .\books\models.py:39
+msgid "13 Simbolių"
+msgstr "13 simbols"
+
+#: .\books\models.py:39
+msgid "kodas"
+msgstr "code"
+
+#: .\books\models.py:40
+msgid "zanras"
+msgstr "genre"
+
+#: .\books\models.py:40
+msgid "isrinkite zanrus siai knygai"
+msgstr "chose genres for this book"
+
+#: .\books\models.py:41
+msgid "viršelis"
+msgstr "cover"
+
+#: .\books\models.py:48
+#, fuzzy
+#| msgid "zanras"
+msgid "zanrai"
+msgstr "genres"
+
+#: .\books\models.py:52
+msgid "prieinamu kopiju kiekis"
+msgstr "available copies"
+
+#: .\books\models.py:56
+msgid "unikalus ID knygos kopijai"
+msgstr "unique ID for book copies"
+
+#: .\books\models.py:57 .\books\models.py:91
+msgid "knyga"
+msgstr "book"
+
+#: .\books\models.py:58
+msgid "grazinama"
+msgstr "return"
+
+#: .\books\models.py:61
+msgid "administruojama"
+msgstr "administrating"
+
+#: .\books\models.py:62
+msgid "paimta"
+msgstr "taken"
+
+#: .\books\models.py:63
+msgid "galima paimti"
+msgstr "available to take"
+
+#: .\books\models.py:64
+msgid "rezervuota"
+msgstr "rezerved"
+
+#: .\books\models.py:67
+msgid "statusas"
+msgstr "status"
+
+#: .\books\models.py:68 .\books\models.py:99
+msgid "skaitytojas"
+msgstr "reader"
+
+#: .\books\models.py:82
+msgid "knygos kopija"
+msgstr "book copy"
+
+#: .\books\models.py:83
+msgid "knygu kopijos"
+msgstr "book copies"
+
+#: .\books\models.py:104
+msgid "atsiliepimas"
+msgstr "review"
+
 #: .\books\templates\books\index.html:5
 msgid "Rajono Biblioteka"
 msgstr "Region library"

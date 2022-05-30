@@ -8,19 +8,19 @@ from tinymce.models import HTMLField
 
 # Create your models here.
 class Genre(models.Model):
-    name = models.CharField(_('pavadinimas', max_length=200, help_text='iveskite knygos zanra (pvz. detektyvas)'))
+    name = models.CharField(_('pavadinimas'), max_length=200, help_text=_('iveskite knygos zanra (pvz. detektyvas)'))
 
     def __str__(self):
         return self.name
 
 
 class Author(models.Model):
-    first_name = models.CharField(_('vardas', max_length=100))
-    last_name = models.CharField(_('pavarde', max_length=100))
-    description = HTMLField(_('apie autoriu', blank=True, null=True))
+    first_name = models.CharField(_('vardas'), max_length=100)
+    last_name = models.CharField(_('pavarde'), max_length=100)
+    description = HTMLField(_('apie autoriu'), blank=True, null=True)
 
     def __str__(self):
-        return _(f'{self.first_name} {self.last_name}')
+        return f'{self.first_name} {self.last_name}'
 
     def get_books_count(self):
         return self.books.count()
@@ -41,11 +41,11 @@ class Book(models.Model):
     cover = models.ImageField(_('viršelis'), upload_to='books/covers', null=True, blank=True)
 
     def __str__(self):
-        return _(f'{str(self.author)} - {self.title}')
+        return f'{str(self.author)} - {self.title}'
 
     def display_genres(self):
         return ', '.join(genre.name for genre in self.genre.all()[:3])
-    display_genres.short_description = _('Zanrai')
+    display_genres.short_description = _('zanrai')
 
     def get_available_instances(self):
         return self.book_instances.filter(status__exact='g').count()
